@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Landing from "./pages/landing";
+import StartPage from "./pages/startPage";
 
 class Frame extends Component {
 
@@ -10,16 +11,24 @@ class Frame extends Component {
         }
     }
 
+    upstreamStateChange = (data)=>{
+        this.setState(data)
+    }
+
     render() {
         switch(this.state.index) {
             case 'landing':
                 return (
-                <Landing/>
+                    <Landing callback={this.upstreamStateChange}/>
+                )
+            case 'start-quiz':
+                return(
+                    <StartPage code={this.state.code}/>
                 )
             default:
                 return (
                     <div>
-                        <h1> It appears an error has occurred.</h1>
+                        <h1 className='text'> It appears an error has occurred.</h1>
                     </div>
                 )
         }

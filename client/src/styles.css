@@ -16,6 +16,7 @@
 .button-colors{
     background-color: rgb(30, 215, 96) !important;
     border-width: 0 !important;
+    border-radius: 50px !important;
 }
 
 .center {

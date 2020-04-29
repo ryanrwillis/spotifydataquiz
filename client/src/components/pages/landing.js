@@ -18,9 +18,12 @@ const authURL = 'https://accounts.spotify.com/authorize?' + queryString.stringif
 
 class Landing extends Component {
     componentDidMount(){
-        console.log(window.location.href)
-        if(window.location.href.includes('code')){
-            console.log('It has a code.')
+        const params = queryString.parse(window.location.href.split('/?')[1]);
+        if(params.hasOwnProperty('code')){
+            this.props.callback({
+                code: params['code'],
+                index: 'start-quiz'
+            })
         }
     }
 
@@ -28,8 +31,6 @@ class Landing extends Component {
         return (
             <div style = {{
                 height:"100vh",
-                // position: 'absolute', left: '50%', top: '50%',
-                // transform: 'translate(-50%, -50%)'
             }} className = 'globals'>
                 <div style = {{
                     position: 'absolute', left: '50%', top: '45%',
