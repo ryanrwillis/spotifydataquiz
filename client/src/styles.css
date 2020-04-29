@@ -1,0 +1,27 @@
+.globals{
+    background-color: #212121;
+    /*font: 16px Arial, sans-serif;*/
+}
+
+.text{
+    color: white;
+}
+
+.header{
+    color: rgb(30, 215, 96);
+    font-weight: bold;
+    text-align: center;
+}
+
+.button-colors{
+    background-color: rgb(30, 215, 96) !important;
+    border-width: 0 !important;
+}
+
+.center {
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    -ms-transform: translate(-50%, -0%);
+    transform: translate(-50%, -0%);
+}
