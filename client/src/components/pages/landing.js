@@ -3,10 +3,10 @@ import hash from 'hash'
 const queryString = require('querystring');
 // Credentials
 const clientID = '703b7c645c0f48b9bcb94a4304c6d857';
-const clientSecret = '8fb0f5fbc61745e88bd27498debe9cda';
 
 
-const scope = 'user-read-private';
+
+const scope = 'user-read-private user-read-recently-played';
 const redirectURI = 'http://localhost:3000/'
 const authURL = 'https://accounts.spotify.com/authorize?' + queryString.stringify({
     client_id: clientID,
