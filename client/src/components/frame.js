@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Landing from "./pages/landing";
 import StartPage from "./pages/startPage";
+import Game from "./pages/game";
 
 class Frame extends Component {
 
@@ -23,8 +24,13 @@ class Frame extends Component {
                 )
             case 'start-quiz':
                 return(
-                    <StartPage code={this.state.code}/>
+                    <StartPage callback = {this.upstreamStateChange} code={this.state.code}/>
                 )
+            case 'game':{
+                return(
+                    <Game questions = {this.state.questions}/>
+                )
+            }
             default:
                 return (
                     <div>

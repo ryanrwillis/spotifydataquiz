@@ -8,17 +8,23 @@
 }
 
 .header{
-    color: rgb(30, 215, 96);
+    color: #52af77;
     font-weight: bold;
     text-align: center;
 }
 
 .button-colors{
-    background-color: rgb(30, 215, 96) !important;
+    background-color: #52af77 !important;
     border-width: 0 !important;
     border-radius: 50px !important;
 }
 
+.image-center{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
 .center {
     margin: 0;
     position: absolute;

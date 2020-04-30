@@ -1,6 +1,9 @@
 const express = require('express');
-const app = express();
 const request = require('request')
+const queryString = require('querystring');
+const ru = require('./helpers/randomUnique')
+
+const app = express();
 
 const port = process.env.PORT || 5000;
 const clientID = process.env.CLIENT_ID || '703b7c645c0f48b9bcb94a4304c6d857'; // git ignore
@@ -58,4 +61,31 @@ app.get('/get-user-profile', (req, res) =>{
     } catch(err){
         console.log(err)
     }
+})
+
+app.get('/generate-question-set', (req, res) => {
+    // Takes in 2 headers, length and token. Generates the amount of requested questions and returns complete JSON structure for the questions.
+    const token = req.headers['token'];
+    const length = req.headers['length']
+
+    const topTracksOptions = {
+        url: `${apiURL}/me/top/tracks?${queryString.stringify({limit: 50})}`,
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+    }
+
+    request.get(topTracksOptions, (error, response, body) =>{
+        body = JSON.parse(body);
+        let songs = body.items;
+        let pairings =  ru.generatePairs(length, 0, 50);
+        pairings.forEach(pair =>{
+            for(let i = 0; i < 2; i++){
+                songs[pair[i]].rank = pair[i];
+                pair[i] = songs[pair[i]]
+            }
+        })
+        res.json(pairings)
+    })
+
 })

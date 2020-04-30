@@ -41,12 +41,34 @@ class StartPage extends Component {
         super(props);
         this.state = {
             token: '',
-            name: ''
+            name: '',
+            slider: 10,
         }
     }
 
     handleSliderChange = (event, value) =>{
-        console.log(value)
+        this.setState({
+            slider: value
+        })
+    }
+
+    getQuestions = () =>{ //generate-question-set
+        axios({
+            method: 'get',
+            url: '/generate-question-set',
+            headers: {
+                token: this.state.token,
+                length: this.state.slider
+            }
+        }).then(res =>{
+            console.log(res.data)
+            this.props.callback({questions: res.data, index: 'game'})
+        })
+    }
+
+    handlePlayButton = event =>{
+        event.preventDefault();
+        this.getQuestions(); // Adds questions to the outer frame's state for use in game portion
     }
 
     getAccessToken = () =>{
@@ -68,8 +90,6 @@ class StartPage extends Component {
                     token: this.state.token
                 }
             }).then(profile =>{
-                console.log(profile)
-                console.log(profile.data)
                 if(!profile.data.hasOwnProperty('error')) { // TODO: handle error with profile
                     this.setState({
                         name: profile.data['name'].split(' ')[0]
@@ -82,7 +102,6 @@ class StartPage extends Component {
     componentDidMount() {
         console.log(this.state.token)
         if(this.state.token == '') {
-            console.log('getting access')
             this.getAccessToken()
         }
     }
@@ -103,9 +122,12 @@ class StartPage extends Component {
                     </h5>
                     <GreenSlider min={4} step={1} max={16} defaultValue={10} valueLabelDisplay='on' onChange={this.handleSliderChange}/>
                     <h5 className='text' style={{'text-align': 'center', 'padding-bottom': '15px', 'padding-top': '15px'}}>
+                        Estimated time: {this.state.slider * 6} minutes
+                    </h5>
+                    <h5 className='text' style={{'text-align': 'center', 'padding-bottom': '15px', 'padding-top': '15px'}}>
                         Please open the Spotify client on your device for the best experience.
                     </h5>
-                    <button className='button-primary button-colors center'>Start</button>
+                    <button onClick={this.handlePlayButton} className='button-primary button-colors center'>Start</button>
                 </div>
 
             </div>
