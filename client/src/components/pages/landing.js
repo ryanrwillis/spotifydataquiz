@@ -6,7 +6,7 @@ const clientID = '703b7c645c0f48b9bcb94a4304c6d857';
 
 
 
-const scope = 'user-read-private user-top-read';
+const scope = 'user-read-private user-top-read streaming user-modify-playback-state';
 const redirectURI = 'http://localhost:3000/'
 const authURL = 'https://accounts.spotify.com/authorize?' + queryString.stringify({
     client_id: clientID,

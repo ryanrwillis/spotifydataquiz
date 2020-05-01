@@ -28,7 +28,7 @@ class Frame extends Component {
                 )
             case 'game':{
                 return(
-                    <Game questions = {this.state.questions}/>
+                    <Game questions = {this.state.questions} token = {this.state.token}/>
                 )
             }
             default:

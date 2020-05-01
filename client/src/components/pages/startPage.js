@@ -62,7 +62,7 @@ class StartPage extends Component {
             }
         }).then(res =>{
             console.log(res.data)
-            this.props.callback({questions: res.data, index: 'game'})
+            this.props.callback({questions: res.data, index: 'game', token: this.state.token})
         })
     }
 

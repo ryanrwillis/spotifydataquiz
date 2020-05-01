@@ -89,3 +89,22 @@ app.get('/generate-question-set', (req, res) => {
     })
 
 })
+
+app.get('/play-song', (req, res)=>{
+    const token = req.headers['token'];
+    const uri = req.headers['uri']
+    console.log('playing ', uri)
+
+    const playOptions = {
+        url: `${apiURL}/me/player/play`,
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+        json:{
+            uris: [uri]
+        }
+    }
+    request.put(playOptions, (error, response, body) =>{
+      console.log(body)
+    }).then(res.send(200))
+})

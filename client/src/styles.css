@@ -25,6 +25,13 @@
     margin-right: auto;
     width: 50%;
 }
+
+.button-center{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .center {
     margin: 0;
     position: absolute;
