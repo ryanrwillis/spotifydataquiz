@@ -12,7 +12,8 @@ const authURL = 'https://accounts.spotify.com/authorize?' + queryString.stringif
     client_id: clientID,
     response_type: 'code',
     redirect_uri: redirectURI,
-    scope: scope
+    scope: scope,
+    show_dialog: 'true'
 });
 
 

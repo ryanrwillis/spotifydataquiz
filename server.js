@@ -31,9 +31,17 @@ app.get('/get-access-token', (req, res) => {
         json: true
     };
     request.post(authOptions, (error, response, body) =>{
-        res.json({
-            'access_token': body.access_token
-        })
+        console.log(body)
+        if(body.hasOwnProperty('error')){
+            res.json({
+                'error': body.error,
+                'access_token': 'err'
+            })
+        } else {
+            res.json({
+                'access_token': body.access_token
+            })
+        }
     })
 })
 
@@ -107,4 +115,17 @@ app.get('/play-song', (req, res)=>{
     request.put(playOptions, (error, response, body) =>{
       console.log(body)
     }).then(res.send(200))
+})
+
+app.get('/pause-song', (req, res)=>{
+    const token = req.headers['token'];
+    const pauseOptions = {
+        url: `${apiURL}/me/player/pause`,
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+    }
+    request.put(pauseOptions, (error, response, body) =>{
+        console.log(body)
+    })
 })

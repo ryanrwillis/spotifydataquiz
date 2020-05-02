@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import Song from "../song";
 
+const axios = require('axios');
+
 class Game extends Component {
     constructor(props) {
         super(props);
@@ -18,6 +20,10 @@ class Game extends Component {
         }
         if(this.state.questionNumber == this.state.lastQuestion){
             //TODO: add final screen
+            this.props.callback({
+                index: 'results',
+                questions: this.props.questions
+            })
             console.log('last question')
         }
         else {
@@ -25,6 +31,14 @@ class Game extends Component {
                 questionNumber: this.state.questionNumber + 1
             })
         }
+        // Pause playback
+        axios({
+            method: 'get',
+            url: '/pause-song',
+            headers: {
+                token: this.props.token
+            }
+        })
     }
     render() {
         return (

@@ -95,6 +95,13 @@ class StartPage extends Component {
                         name: profile.data['name'].split(' ')[0]
                     })
                 }
+            }).then( () =>{
+                if(this.state.token === 'err'){
+                    window.location.replace("/")
+                    this.props.callback({
+                        index: 'landing'
+                    })
+                }
             })
         })
     }

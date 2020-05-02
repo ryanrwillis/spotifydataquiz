@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Landing from "./pages/landing";
 import StartPage from "./pages/startPage";
 import Game from "./pages/game";
+import Results from "./pages/results";
 
 class Frame extends Component {
 
@@ -28,7 +29,12 @@ class Frame extends Component {
                 )
             case 'game':{
                 return(
-                    <Game questions = {this.state.questions} token = {this.state.token}/>
+                    <Game questions = {this.state.questions} token = {this.state.token} callback={this.upstreamStateChange}/>
+                )
+            }
+            case 'results':{
+                return(
+                    <Results questions={this.state.questions}/>
                 )
             }
             default:
