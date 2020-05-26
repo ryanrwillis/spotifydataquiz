@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
+const keys = require('config')
 import hash from 'hash'
 const queryString = require('querystring');
 // Credentials
-const clientID = '703b7c645c0f48b9bcb94a4304c6d857';
+const clientID = keys.CLIENT_ID;
 
 
 
 const scope = 'user-read-private user-top-read streaming user-modify-playback-state';
-const redirectURI = 'http://localhost:3000/'
+const redirectURI = keys.REDIRECT_URI;
 const authURL = 'https://accounts.spotify.com/authorize?' + queryString.stringify({
     client_id: clientID,
     response_type: 'code',
