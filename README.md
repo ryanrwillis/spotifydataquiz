@@ -14,3 +14,7 @@ General navigation of the app
 The web-app uses Spotify's API to control the users spotify device remotely. It will control whatever Spotify has deemed to be the active device at that moment. It should also be noted that Spotify currently restricts remote control of devices to premium users only.
 
 ![Remote Control Demo](demo/remote-demo.gif)
+
+
+## Deployment
+Simply update the config.js folder in the root with your own credentials
